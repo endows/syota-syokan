@@ -32,14 +32,18 @@ var MyButton = React.createClass({
       muiTheme: ThemeManager.getCurrentTheme()
     };
   },
+  insertImage:function(){
+    console.log('clicke')
+  },
   render: function () {
     return (
       <div>
-        <RaisedButton label="Default"/>
+        <RaisedButton label="Default" onClick={this.insertImage}/>
         <Card>
-          <CardMedia overlay={ < CardTitle title = "Title" subtitle = "Subtitle" />}>
-            <img </CardMedia src="http://lorempixel.com/600/337/nature/"/>>
-
+          <CardMedia>
+            <img src="http://pic.prepics-cdn.com/gundamseed/11962007.jpeg"/>
+          </CardMedia>
+          <CardTitle title="アウル・ニーダ" subtitle="ガンダムSEED Destiny"/>
             </Card>
           </div>
 
