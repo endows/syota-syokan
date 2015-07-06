@@ -37530,23 +37530,30 @@ var Card = mui.Card;
 var CardMedia = mui.CardMedia;
 var CardTitle = mui.CardTitle;
 
-var MyCard = React.createClass({displayName: "MyCard",
-  childContextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
-  },
-  render: function () {
-    return (
-      React.createElement(Card, null)
-    );
+
+
+var syotas_data = [
+  {
+    name: 'アウル・ニーダ',
+    anime: "ガンダムSEED Destiny",
+    image: "http://pic.prepics-cdn.com/gundamseed/11962007.jpeg"
+  }, {
+    name: '潮田渚',
+    anime: "暗殺教室",
+    image: "http://blog-imgs-65.fc2.com/s/y/o/syokusyu56/BxQt20yCMAEHKct.jpg"
+  }, {
+    name: 'コバヤシ少年',
+    anime: "乱歩奇譚",
+    image: "http://blog-imgs-64.fc2.com/y/a/r/yaraon/1435853488172.jpg"
   }
-});
+]
 
 var MyButton = React.createClass({displayName: "MyButton",
+  getInitialState: function () {
+    return {
+      syotas: []
+    };
+  },
   childContextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -37555,20 +37562,29 @@ var MyButton = React.createClass({displayName: "MyButton",
       muiTheme: ThemeManager.getCurrentTheme()
     };
   },
-  insertImage:function(){
-    console.log('clicke')
+  insertImage: function () {
+    var syotas = this.state.syotas.slice()
+    syotas.unshift(syotas_data.pop())
+    this.setState({syotas:syotas})
   },
   render: function () {
+    var syotas_card = this.state.syotas.map(function (syota) {
+      return (
+        React.createElement("div", null, 
+          React.createElement(Card, null, 
+            React.createElement(CardMedia, null, 
+              React.createElement("img", {src: syota.image})
+            ), 
+            React.createElement(CardTitle, {subtitle: syota.anime, title: syota.name})
+          )
+        )
+      )
+    })
     return (
       React.createElement("div", null, 
-        React.createElement(RaisedButton, {label: "Default", onClick: this.insertImage}), 
-        React.createElement(Card, null, 
-          React.createElement(CardMedia, null, 
-            React.createElement("img", {src: "http://pic.prepics-cdn.com/gundamseed/11962007.jpeg"})
-          ), 
-          React.createElement(CardTitle, {title: "アウル・ニーダ", subtitle: "ガンダムSEED Destiny"})
-            )
-          )
+        React.createElement(RaisedButton, {label: "ショタ召喚", onClick: this.insertImage}), 
+          syotas_card
+      )
 
     );
   }
