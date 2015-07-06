@@ -1,0 +1,20 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^0.13.3",
+    "reactify": "^1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "watchify -t reactify src/main.jsx -o dist/bundle.js & live-server dist --no-browser"
+  },
+  "author": "",
+  "license": "ISC",
+  "browserify": {
+    "transform": ["reactify"]
+  }
+}
