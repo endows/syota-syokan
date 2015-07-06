@@ -7,6 +7,10 @@ var Card = mui.Card;
 var CardMedia = mui.CardMedia;
 var CardTitle = mui.CardTitle;
 
+var Asteroid = require('asteroid.browser')
+var ceres = new Asteroid("localhost:3000");
+console.log(ceres)
+
 
 
 var syotas_data = [
